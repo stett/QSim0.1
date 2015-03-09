@@ -34,9 +34,20 @@ int qsim_sandbox_1d::App::run() {
     // Rest OpenGL?? Necessary??
     window->resetGLStates();
 
+    // Create the vertex array for the plot
+    auto N = qsim1d.get_N();
+    auto data = qsim1d.get_data();
+    auto range = qsim1d.get_range();
+    auto size = window->getSize();
+    sf::VertexArray vertex_array(sf::LinesStrip, N);
+    for (int i = 0; i < qsim1d.get_N(); i ++)
+        vertex_array[i].position = sf::Vector2f(
+            i * ((float)size.x / (float)(N - 1)),
+            (float)size.y - (data[i] - range[0]) * ((float)size.y) / (range[1] - range[0]));
+
+    // Begin the main loop
     sf::Clock clock;
     sf::Event event;
-
     while (window->isOpen()) {
 
         // Poll for events
@@ -55,6 +66,7 @@ int qsim_sandbox_1d::App::run() {
 
         // Render stuff
         window->clear(sf::Color(100, 100, 100));
+        window->draw(vertex_array);
         sfgui.Display(*window);
         window->display();
     }

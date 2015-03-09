@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFGUI/SFGUI.hpp>
 #include <memory>
+#include "qsim/qsim1d.h"
 
 
 namespace qsim_sandbox_1d {
@@ -14,13 +15,9 @@ namespace qsim_sandbox_1d {
         int run();
         void step();
 
-    public:
-        std::shared_ptr<sf::RenderWindow> window;
-        //std::shared_ptr<sfg::SFGUI> sfgui;
-        //std::shared_ptr<sfg::Desktop> sfg_desktop;
-        //std::shared_ptr<sfg::Window> sfg_window;
-
     private:
+        qsim::QSim1D qsim1d;
+        std::shared_ptr<sf::RenderWindow> window;
         sfg::SFGUI sfgui;
     };
 }
