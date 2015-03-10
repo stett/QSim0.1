@@ -27,7 +27,7 @@ int qsim_sandbox_1d::App::run() {
     box->Pack( sfg_button, false );
 
     auto sfg_window = sfg::Window::Create();
-    sfg_window->SetTitle("SFGUI Window");
+    sfg_window->SetTitle("Controls");
     sfg_window->Add(box);
 
     sfg::Desktop sfg_desktop;
@@ -82,7 +82,7 @@ int qsim_sandbox_1d::App::run() {
         sfg_desktop.Update(clock.restart().asSeconds());
 
         // Render stuff
-        window->clear(sf::Color(255, 255, 255));
+        window->clear(sf::Color(0, 0, 0));
         window->draw(vertex_array);
         sfgui.Display(*window);
         window->display();

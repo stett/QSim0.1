@@ -3,7 +3,35 @@
 #include <gsl/gsl_complex_math.h>
 #include <cmath>
 
+
 sf::Color color_complex(const gsl_complex& z) {
+    double arg = gsl_complex_arg(z) + M_PI;
+    double hue = arg / (2.0 * M_PI);
+    double r, g, b;
+    double one_sixth = 1.0 / 6.0;
+    
+    if (hue > 5.0 * one_sixth) {
+        r = 1; g = 0; b = 6.0 * (1.0 - hue);
+    } else if (hue > 4.0 * one_sixth) {
+        g = 0; b = 1; r = 6.0 * (hue - 4.0 * one_sixth);
+    } else if (hue > 3.0 * one_sixth) {
+        b = 1; r = 0; g = 6.0 * (4.0 * one_sixth - hue);
+    } else if (hue > 2.0 * one_sixth) {
+        r = 0; g = 1; b = 6.0 * (hue - 2.0 * one_sixth);
+    } else if (hue > one_sixth) {
+        g = 1; b = 0; r = 6.0 * (2.0 * one_sixth - hue);
+    } else {
+        b = 0; r = 1; g = 6.0 * hue;
+    }
+
+    return sf::Color(
+        (unsigned int)(255.0 * r),
+        (unsigned int)(255.0 * g),
+        (unsigned int)(255.0 * b),
+        255);
+}
+
+sf::Color color_complex_circle(const gsl_complex& z) {
 
     // Define color base vectors (splitting unit circle into 3rds)
     double rx = 0;
