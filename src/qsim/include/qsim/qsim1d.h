@@ -12,9 +12,15 @@ namespace qsim {
         const float* get_range() { return range; }
         const gsl_complex* get_data() { return data; }
 
+        void evolve(double dt);
+
+        // Chebychev functions
+        void cheb_u(double dt);
+
     private:
         float range[2];
         int N;
+        double DeltaE;
         gsl_complex* data;
     };
 };
