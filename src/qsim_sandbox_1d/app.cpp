@@ -1,6 +1,6 @@
 #include <SFML/OpenGL.hpp>
 #include <SFML/Graphics.hpp>
-#include <SFGUI/SFGUI.hpp>
+//#include <SFGUI/SFGUI.hpp>
 #include <gsl/gsl_complex.h>
 #include <memory>
 #include "app.h"
@@ -21,6 +21,7 @@ qsim_sandbox_1d::App::~App() {}
 
 int qsim_sandbox_1d::App::run() {
 
+    /*
     // Initialize SFGUI
     auto sfg_button = sfg::Button::Create("Hello");
     auto box = sfg::Box::Create( sfg::Box::Orientation::VERTICAL, 5.0f );
@@ -32,6 +33,7 @@ int qsim_sandbox_1d::App::run() {
 
     sfg::Desktop sfg_desktop;
     sfg_desktop.Add(sfg_window);
+    */
 
     // Rest OpenGL?? Necessary??
     window->resetGLStates();
@@ -55,7 +57,7 @@ int qsim_sandbox_1d::App::run() {
         while (window->pollEvent(event)) {
 
             // Pass events on to the SFGUI desktop
-            sfg_desktop.HandleEvent(event);
+            //sfg_desktop.HandleEvent(event);
 
             // Handle closing
             if (event.type == sf::Event::Closed)
@@ -65,7 +67,7 @@ int qsim_sandbox_1d::App::run() {
         auto dt = clock.restart().asSeconds();
 
         // Update SFGUI
-        sfg_desktop.Update(dt);
+        //sfg_desktop.Update(dt);
 
         // Update simulation
         qsim1d.evolve(dt);
@@ -91,7 +93,7 @@ int qsim_sandbox_1d::App::run() {
         // Render stuff
         window->clear(sf::Color(0, 0, 0));
         window->draw(vertex_array);
-        sfgui.Display(*window);
+        //sfgui.Display(*window);
         window->display();
     }
 

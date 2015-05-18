@@ -1,6 +1,6 @@
 #include <SFML/OpenGL.hpp>
 #include <SFML/Graphics.hpp>
-#include <SFGUI/SFGUI.hpp>
+//#include <SFGUI/SFGUI.hpp>
 #include <memory>
 #include "qsim/qsim1d.h"
 
@@ -18,6 +18,6 @@ namespace qsim_sandbox_1d {
     private:
         qsim::QSim1D qsim1d;
         std::shared_ptr<sf::RenderWindow> window;
-        sfg::SFGUI sfgui;
+        //sfg::SFGUI sfgui;
     };
 }
