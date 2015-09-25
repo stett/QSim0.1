@@ -19,5 +19,8 @@ namespace qsim_sandbox_1d {
         qsim::QSim1D qsim1d;
         std::shared_ptr<sf::RenderWindow> window;
         //sfg::SFGUI sfgui;
+
+    private:
+        void set_verts(sf::VertexArray& verts, const gsl_complex* data, int N, const double* range);
     };
 }

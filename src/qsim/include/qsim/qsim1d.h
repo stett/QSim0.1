@@ -4,13 +4,15 @@ namespace qsim {
 
     class QSim1D {
     public:
-        QSim1D(int N = 128);
+        QSim1D(int N = 256);
         ~QSim1D();
 
     public:
         int get_N() { return N; }
-        const float* get_range() { return range; }
-        const gsl_complex* get_data() { return data; }
+        const double* get_range() { return range; }
+        const gsl_complex* get_psi() { return psi; }
+        const gsl_complex* get_V() { return V; }
+        double get_normalization();
 
         void evolve(double dt);
 
@@ -18,9 +20,10 @@ namespace qsim {
         void cheb_u(double dt);
 
     private:
-        float range[2];
+        double range[2];
         int N;
         double DeltaE;
-        gsl_complex* data;
+        gsl_complex* psi;
+        gsl_complex* V;
     };
 };
